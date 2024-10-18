@@ -234,7 +234,7 @@ $(addprefix $(LOGS_DIR)/,trace_hart_%.txt hart_%_perf.json dma_%_perf.json): $(L
 
 # Generate source-code interleaved traces for all harts. Reads the binary from
 # the logs/.rtlbinary file that is written at start of simulation in the vsim script
-BINARY ?= $(shell cat $(SIM_DIR)/.rtlbinary)
+BINARY ?= $(shell cat $(LOGS_DIR)/.rtlbinary)
 $(LOGS_DIR)/trace_hart_%.s: $(LOGS_DIR)/trace_hart_%.txt ${ANNOTATE_PY}
 	${ANNOTATE_PY} ${ANNOTATE_FLAGS} -o $@ $(BINARY) $<
 $(LOGS_DIR)/trace_hart_%.diff: $(LOGS_DIR)/trace_hart_%.txt ${ANNOTATE_PY}
